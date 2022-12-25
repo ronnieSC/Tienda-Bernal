@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product edit</title>
+</head>
+<body>
+    <form action="/productos/update/{{product.id}}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="name">Nombre: </label>
+            <input type="text" name="name" value="{{product.productName}}">
+        </div>
+        <div>
+            <label for="name">Descripcion: </label>
+            <input type="text" name="description" value="{{product.productDescription}}">
+        </div>
+        <div>
+            <label for="name">Precio: </label>
+            <input type="text" name="price" value="{{product.productPrice}}">
+        </div>
+        <div>
+            <label for="name">Imagen: </label>
+            <input type="file" name="image" value="{{product.productImage}}">
+        </div>
+        <div>
+            <label for="name">Categoria: </label>
+            <select name="category" value="{{product.category.CatNom}}">
+                {% for category in categories %}
+                <option value="{{category.id}}">{{category.CatNom}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</body>
+</html>

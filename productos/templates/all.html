@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+</head>
+<body>
+    <h1>Lista de productos</h1>
+    <ul>
+        {% for product in productos %}
+        <li>
+            <img src="{{product.productImage}}" alt="product image"></img>
+            <div>
+                Nombre: {{product.productName}}
+            </div>
+            <div>
+                Descripcion: {{product.productDescription}}
+            </div>
+            <div>
+                Precio: {{product.productPrice}}
+            </div>
+            <div>
+                Categoria: {{product.productCategory}}
+            </div>
+        </li>
+        <a href="update/{{product.id}}">Editar</a>
+        {% endfor %}
+    </ul>
+    <div>
+        <a href="create">Agregar producto</a>   
+    </div>
+</body>
+</html>
