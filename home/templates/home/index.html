@@ -1,0 +1,251 @@
+{% load static %}
+{% static "images" as baseURL%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bienvenidos a Bernal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'home/fonts/icomoon/style.css' %}">
+
+  <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/jquery-ui.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/owl.theme.default.min.css' %}">
+
+
+  <link rel="stylesheet" href="{% static 'home/css/aos.css' %}">
+
+  <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+
+</head>
+
+<body>
+
+  <div class="site-wrap">
+
+
+    <div class="site-navbar py-2">
+
+      <div class="search-wrap">
+        <div class="container">
+          <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="#" method="post">
+            <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+          </form>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <div class="site-logo">
+              <a href="/" class="js-logo-clone">Bernal</a>
+            </div>
+          </div>
+          <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+              <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li class="active"><a href="/">Inicio</a></li>
+                <!--li><a href="/shop">Tienda</a></li-->
+                {% if user.is_authenticated %}
+                <!--li><a href="/sticky_add">Añadir Sticky</a></li-->
+                <!--li><a href="/testimonial_add">Añadir Testimonio</a></li-->
+                <!--li><a href="/sticky_view">Ver Stickys</a></li-->
+                <!--li><a href="/testimonial_view">Ver Testimonios</a></li-->
+                {% if user.is_staff %}
+                <li><a href="usuarios/register">Añadir Usuario</a></li>
+                <li><a href="usuarios/delete">Borrar Usuario</a></li>
+                {%endif%}
+                <li><a href="usuarios/change_password">Cambiar Contraseña</a></li>
+                <li><a href="usuarios/logout">logout</a></li><br>
+                <li><a href="/proveedores/add_proveedor">Añadir Proveedor</a></li>
+                <li><a href="/proveedores/view_proveedor">Ver Proveedores</a></li>
+                <li><a href="/productos/create">Añadir Producto</a></li>
+                <li><a href="/productos/all">Ver Productos</a></li>
+                <li><a href="/clientes/create">Añadir Cliente</a></li>
+                <li><a href="/clientes">Ver Clientes</a></li>
+                <li><a href="/ventas/formulario_venta/">Añadir Venta</a></li>
+                <li><a href="/ventas/ver_formularios/">Detalles de Venta</a></li>
+                <li><a href="/categorias/add_categoria">Añadir Categoría</a></li>
+                <li><a href="/categorias/ver_categorias">Ver Categorías</a></li>
+                {%else%}
+                <li><a href="usuarios/login">Login</a></li>
+                {%endif%}
+              </ul>
+            </nav>
+          </div>
+          <div class="logo">
+            <div class="site-logo">
+              {% if user.is_authenticated %}
+              <p class="text-dark font-weight-bold">Hola, {{user.username}}</p>
+              {%endif%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-blocks-cover" style="background-image: url('{% static 'home/images/inicio.jpg' %}');">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
+            <div class="site-block-cover-content text-center">
+              <h2 class="sub-title">La tienda que necesitas, esta a tu alcance</h2>
+              <h1>Bienvenido a Bernal</h1>
+              <p>
+                <a href="/shop" class="btn btn-primary px-5 py-3">Catálogo</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row align-items-stretch section-overlap">
+	{% for Stick in Sticky %}
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="banner-wrap {{Stick.color}} h-100">
+              <a href="#" class="h-100">
+                <h5>{{Stick.titulo}}</h5>
+                <p>
+                  {{Stick.subtitulo}}
+                  <strong>{{Stick.descripcion}}</strong>
+                </p>
+              </a>
+            </div>
+          </div>
+	{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Nuestro Local</h2>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <img src="{% static 'home/images/fondo.jpg' %}" alt="Image" class="img-responsive">
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">Testimonios</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 no-direction owl-carousel">
+              {% for Testimony in Testimonials %}
+              <div class="testimony">
+                <blockquote>
+                  <img src="{{Testimony.imagen.url}}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;{{Testimony.descripcion}}&rdquo;</p>
+                </blockquote>
+
+                <p>&mdash; {{Testimony.nombre}}</p>
+              </div>
+            {%endfor%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-secondary bg-image" style="background-image: url('{% static 'home/images/bg_2.jpg' %}');">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'home/images/fondo4.jpg' %}');">
+              <div class="banner-1-inner align-self-center">
+                <h2>Los productos con mejor calidad</h2>
+                <p>Los productos nos respaldade Bernal estan garantizados, usted podra encontrar productos a buena calidad y al precio justo
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'home/images/fondo3.jpg' %}');">
+              <div class="banner-1-inner ml-auto  align-self-center">
+                <h2>La opinion de los clientes</h2>
+                <p>Visite nuestra tienda y encuentre las mejores promociones y sorteos.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+
+            <div class="block-7">
+              <h3 class="footer-heading mb-4">Acerca de Nosotros</h3>
+              <p>Bernal es mas que solo una tienda, es brindar una mejor experiencia a los usuarios y tener en cuenta lo que necesitan al precio justo.</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Informacion de Contacto</h3>
+              <ul class="list-unstyled">
+                <li class="address"> Independencia 203, UNSA, Arequipa-Peru</li>
+                <li class="phone"><a href="tel://23923929210">+51 999345721</a></li>
+                <li class="email">bernalstore@gmail.com</li>
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+              with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
+                class="text-primary">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{% static 'home/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'home/js/jquery-ui.js' %}"></script>
+  <script src="{% static 'home/js/popper.min.js' %}"></script>
+  <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'home/js/aos.js' %}"></script>
+
+  <script src="{% static 'home/js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -21,9 +21,14 @@ from django.conf.urls.static import static
 from django.urls import include
 
 urlpatterns = [
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('categorias/', include('categorias.urls')),
     path('productos/', include('productos.urls')),
+    path('proveedores/', include('proveedores.urls')),
+    path('usuarios/', include('usuarios.urls')),
+    path('clientes/', include('clientes.urls')),
+    path('ventas/', include('ventas.urls')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
