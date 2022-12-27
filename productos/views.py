@@ -3,6 +3,10 @@ from .models import Producto
 from categorias.models import Categoria
 
 def productsAllView(request):
+    if request.method == "POST":
+        name= request.POST['name']
+        productos = Producto.objects.filter(productName=name)
+        return render(request, "all.html", {"productos":productos})
     productos = Producto.objects.all()
     return render(request, "all.html", {"productos":productos})
 
