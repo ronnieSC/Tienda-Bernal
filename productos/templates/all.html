@@ -9,26 +9,39 @@
 </head>
 <body>
     <h1>Lista de productos</h1>
-    <ul>
+    <form action="" method="post"></form>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Proveedor</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Categoria</th>
+            <th>Operaciones</th>
+        </tr>
         {% for product in productos %}
-        <li>
-            <img src="{{product.productImage}}" alt="product image"></img>
-            <div>
-                Nombre: {{product.productName}}
-            </div>
-            <div>
-                Descripcion: {{product.productDescription}}
-            </div>
-            <div>
-                Precio: {{product.productPrice}}
-            </div>
-            <div>
-                Categoria: {{product.productCategory}}
-            </div>
-        </li>
-        <a href="update/{{product.id}}">Editar</a>
+        <tr>
+            <td>{{product.id}}</td>
+            <td>
+                <img src="{{product.productImage}}" alt="product image"></img>
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productDescription}}</td>
+            <td>Provider</td>
+            <td>{{product.productPrice}}</td>
+            <td>Cantidad</td>
+            <td>{{product.productCategory}}</td>
+            <td>
+                <a href="read/{{product.id}}">Ver</a>
+                <a href="update/{{product.id}}">Editar</a>
+                <a href="delete/{{product.id}}">Eliminar</a>
+            </td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
     <div>
         <a href="create">Agregar producto</a>   
     </div>
